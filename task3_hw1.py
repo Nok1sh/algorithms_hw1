@@ -1,4 +1,4 @@
-from mergesort import MergeSort
+from tools.mergesort import MergeSort
 
 class Node:
     def __init__(self, data: int, next=None) -> None:
