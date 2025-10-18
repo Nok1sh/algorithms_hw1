@@ -2,19 +2,6 @@ from tools.mergesort import MergeSort
 from test_alg import universal_test_system
 from test_for_all_tasks import task22
 
-
-def binary_search(array, value):
-    left, right = 0, len(array) - 1
-    while left <= right:
-        mid = (left + right) // 2
-        if array[mid] == value:
-            return mid
-        elif array[mid] < value:
-            left = mid + 1
-        else:
-            right = mid - 1
-    return -1
-
 def func(filename):
     
     with open(filename, "r") as file:
@@ -27,7 +14,6 @@ def func(filename):
         all_cities = []
         money_in_cities = []
 
-        flag_sort_cities = True
         days_best_city = []
     
         flag_found = True
@@ -128,3 +114,4 @@ name, solutions, tests = task22()
 solutions[name] = func
 
 universal_test_system(solutions, tests)
+
