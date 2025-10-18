@@ -1,0 +1,5 @@
+3
+BillGates Seattle 100
+SteveJobs Seattle 80
+PaulAllen Seattle 60
+7 0

@@ -1,0 +1,12 @@
+2
+WarrenBuffett Omaha 90
+MarkZuckerberg Boston 70
+5 8
+1 WarrenBuffett Boston
+1 MarkZuckerberg Omaha
+2 WarrenBuffett Omaha
+2 MarkZuckerberg Boston
+3 WarrenBuffett Boston
+3 MarkZuckerberg Omaha
+4 WarrenBuffett Omaha
+4 MarkZuckerberg Boston

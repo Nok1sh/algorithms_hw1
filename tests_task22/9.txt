@@ -1,0 +1,7 @@
+2
+Alice Tokyo 50
+Bob London 40
+10 3
+2 Alice Osaka
+5 Bob Manchester
+7 Alice Kyoto

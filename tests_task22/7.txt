@@ -1,0 +1,14 @@
+2
+A CityX 10
+B CityY 20
+10 10
+1 A CityY
+1 B CityX
+2 A CityX
+2 B CityY
+3 A CityY
+3 B CityX
+4 A CityX
+4 B CityY
+5 A CityY
+5 B CityX

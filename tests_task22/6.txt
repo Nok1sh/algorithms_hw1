@@ -1,0 +1,4 @@
+2
+Rich1 CityA 1
+Rich2 CityB 2
+50000 0

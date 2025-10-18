@@ -1,0 +1,7 @@
+a
+abc
+ab
+abcd
+abcde
+b
+bc

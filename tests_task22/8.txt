@@ -1,0 +1,7 @@
+3
+X London 10
+Y Paris 10
+Z Berlin 10
+5 2
+1 X Paris
+3 Y Berlin

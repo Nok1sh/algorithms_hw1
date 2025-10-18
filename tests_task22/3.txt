@@ -1,0 +1,6 @@
+1
+JeffBezos Seattle 150
+10 3
+1 JeffBezos NewYork
+5 JeffBezos London
+8 JeffBezos Seattle

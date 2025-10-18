@@ -1,0 +1,7 @@
+3
+P1 Zcity 5
+P2 Acity 10
+P3 Mcity 7
+5 2
+1 P1 Bcity
+3 P3 Ycity

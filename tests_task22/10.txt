@@ -1,0 +1,6 @@
+2
+John NewYork 30
+jane newyork 25
+10 2
+1 John newyork
+5 jane NewYork
