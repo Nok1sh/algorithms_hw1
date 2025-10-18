@@ -4,7 +4,7 @@ class MergeSort:
     @classmethod
     def merge(cls, array):
         n: int = len(array)
-        if n == 1:
+        if n <= 1:
             return array
         
         mid = n//2
