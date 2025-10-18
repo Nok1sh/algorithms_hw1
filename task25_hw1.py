@@ -1,7 +1,8 @@
+from test_alg import universal_test_system
+from test_for_all_tasks import task25
 
-
-def check_heap():
-    with open("test_25.txt", "r") as file:
+def check_heap(filename):
+    with open(filename, "r") as file:
         n = int(file.readline())
         data = file.readline().split()
         heap = [0]
@@ -16,4 +17,8 @@ def check_heap():
     
     return "YES"
 
-print(check_heap())
+name, solutions, tests = task25()
+
+solutions[name] = check_heap
+
+universal_test_system(solutions, tests)

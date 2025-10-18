@@ -1,4 +1,6 @@
 from tools.mergesort import MergeSort
+from test_alg import universal_test_system
+from test_for_all_tasks import task3
 
 class Node:
     def __init__(self, data: int, next=None) -> None:
@@ -51,30 +53,34 @@ class LinkedList:
         return sorted_array
 
 
+def func(string):
+    arr = string.split()
 
-arr = "1 2 3 4 5 0 1 7 5 8 0".split()
+    A_array = []
+    B_array = []
+    zero_ind = False
 
-A_array = []
-B_array = []
-zero_ind = False
+    for i in arr:
+        number = int(i)
+        if number == 0:
+            zero_ind = True
+        elif not zero_ind:
+            A_array.append(number)
+        else:
+            B_array.append(number)
 
-for i in arr:
-    number = int(i)
-    if number == 0:
-        zero_ind = True
-    elif not zero_ind:
-        A_array.append(number)
-    else:
-        B_array.append(number)
+    linklist = LinkedList()
 
-linklist = LinkedList()
+    for data in A_array:
+        linklist.add_data(data)
 
-for data in A_array:
-    linklist.add_data(data)
+    for data in B_array:
+        linklist.add_other_data(data)
+        
+    return linklist.to_sorted_array
 
-for data in B_array:
-    linklist.add_other_data(data)
-    
-print(linklist.to_sorted_array)
+name, solutions, tests = task3()
 
+solutions[name] = func
 
+print(universal_test_system(solutions, tests))

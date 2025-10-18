@@ -1,4 +1,7 @@
 from tools.mergesort import MergeSort
+from test_alg import universal_test_system
+from test_for_all_tasks import task19
+
 
 def check_all_interval(intervals):
     intervals = MergeSort.merge(intervals)
@@ -11,11 +14,8 @@ def check_all_interval(intervals):
     return end == 10000
 
 
-def func():
-    with open('test_19.txt', 'r') as file:
-        data = []
-        for i in file.read().split():
-            data.append(int(i))
+def func(data):
+    
     
     k = data[0]
     index = 1
@@ -44,13 +44,11 @@ def func():
         
         results.append(status)
 
-    with open('result_19.txt', 'w') as file:
-        for i in range(len(results)-1):
-            if "\n" in results[i]:
-                file.write(results[i])
-            else:
-                file.write(results[i] + "\n")
-        file.write(results[-1])
-        del results, data
+    return results
 
-func()
+
+name, solution, tests = task19()
+
+solution[name] = func
+
+universal_test_system(solution, tests)

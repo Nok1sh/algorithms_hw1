@@ -1,3 +1,5 @@
+from test_alg import universal_test_system
+from test_for_all_tasks import task8
 
 def func(N, k):
     result = 0
@@ -48,4 +50,8 @@ def func(N, k):
     move_mag(0, 0)
     return result
 
-print(func(4, 2))
+name, solutions, tests = task8()
+
+solutions[name] = func
+
+universal_test_system(solutions, tests)

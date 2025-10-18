@@ -1,6 +1,9 @@
+from test_alg import universal_test_system
+from test_for_all_tasks import task30
 
-def func():
-    with open("test_30.txt", "r") as file:
+
+def func(filename):
+    with open(filename, "r") as file:
         n = int(file.readline())
         intervals = []
         for ind in range(n):
@@ -16,13 +19,18 @@ def func():
     result = []
 
     ind_intervals = 0
+    ind_set_intervals = 0
 
     for point in points:
         minlength = None
         ind_minlength = -1
+        ind_intervals = ind_set_intervals
         while ind_intervals < n:
             start = intervals[ind_intervals][0]
-            if point < start:
+            if point < start and point >= intervals[ind_intervals][1]:
+                ind_set_intervals += 1
+                break
+            elif point < start:
                 break
         
             end = intervals[ind_intervals][1]
@@ -42,4 +50,8 @@ def func():
     return result
 
         
-print(func())
+name, solutions, tests = task30()
+
+solutions[name] = func
+
+universal_test_system(solutions, tests)

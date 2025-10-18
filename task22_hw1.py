@@ -1,4 +1,6 @@
 from tools.mergesort import MergeSort
+from test_alg import universal_test_system
+from test_for_all_tasks import task22
 
 
 def binary_search(array, value):
@@ -13,95 +15,99 @@ def binary_search(array, value):
             right = mid - 1
     return -1
 
-def func():
+def func(filename):
     
-    with open("test_22.txt", "r") as file:
+    with open(filename, "r") as file:
         n = int(file.readline())
 
-        names_bil = []
-        cities_bil = []
-        money_bil = []
+        names = []
+        cities = []
+        money = []
 
         all_cities = []
         money_in_cities = []
 
         flag_sort_cities = True
-
+        days_best_city = []
+    
+        flag_found = True
         for _ in range(n):
             name, city, amount = file.readline().split()
             amount = int(amount)
 
-            names_bil.append(name)
-            cities_bil.append(city)
-            money_bil.append(amount)
-            if flag_sort_cities:
-                all_cities = MergeSort.merge(all_cities)
-                flag_sort_cities = False
-
-            city_index = binary_search(all_cities, city)
-            if city_index != -1:
-                money_in_cities[city_index] += amount
-            
-            else:
+            names.append(name)
+            cities.append(city)
+            money.append(amount)
+            flag_found = False
+            for i in range(len(all_cities)):
+                if all_cities[i] == city:
+                    money_in_cities[i] += amount
+                    flag_found = True
+                    break
+            if not flag_found:
                 all_cities.append(city)
                 money_in_cities.append(amount)
-                flag_sort_cities = True
+                days_best_city.append(0)
 
         m, k = file.readline().split()
         m = int(m)
         k = int(k)
 
         move_day = []
-        move_bil = []
+        move_name = []
         move_city = []
 
         for _ in range(k):
             day, name, city = file.readline().split()
             move_day.append(int(day))
-            move_bil.append(name)
+            move_name.append(name)
             move_city.append(city)
-    
-    days_best_city = [0]
-    for _ in range(len(all_cities)):
-        days_best_city.append(0)
 
     day = 1
     moves = 0
-    flag_sort_cities = True
 
     def id_richer_city():
-        max_amount = money_in_cities[0]
-        richest_city = 0
+        richest_idx = 0
         for i in range(1, len(all_cities)):
-            if money_in_cities[i] > max_amount or (money_in_cities[i] == max_amount and all_cities[i] < all_cities[richest_city]):
-                max_amount = money_in_cities[i]
-                richest_city = i
-        return richest_city
+            if money_in_cities[i] > money_in_cities[richest_idx]:
+                richest_idx = i
+            elif money_in_cities[i] == money_in_cities[richest_idx] and all_cities[i] < all_cities[richest_idx]:
+                richest_idx = i
+        return richest_idx
 
     while day <= m:
 
-        while moves < k and move_day[moves] == day - 1:
-            id_billioner = binary_search(names_bil, move_bil[moves]) 
-            cur_city = cities_bil[id_billioner]
+        while moves < k and move_day[moves] == day:
+            id_billioner = -1
+            for i in range(len(names)):
+                if names[i] == move_name[moves]:
+                    id_billioner = i
+                    break
+            cur_city = cities[id_billioner]
             new_city = move_city[moves]
-            amount = money_bil[id_billioner]
+            amount = money[id_billioner]
 
-            if flag_sort_cities:
-                all_cities = MergeSort.merge(all_cities)
-                flag_sort_cities = False
-            
-            cur_city_id = binary_search(all_cities, cur_city)
-            new_city_id = binary_search(all_cities, new_city)
+            cur_city_id = -1
+            for i in range(len(all_cities)):
+                if all_cities[i] == cur_city:
+                    cur_city_id = i
+                    break
+
+            new_city_id = -1
+            for i in range(len(all_cities)):
+                if all_cities[i] == new_city:
+                    new_city_id = i
+                    break
+        
             if new_city_id == -1:
                 all_cities.append(new_city)
-                flag_sort_cities = True
                 money_in_cities.append(0)
                 days_best_city.append(0) 
                 new_city_id = len(all_cities) - 1
             
             money_in_cities[cur_city_id] -= amount
             money_in_cities[new_city_id] += amount
-            cities_bil[id_billioner] = new_city
+            cities[id_billioner] = new_city
 
             moves += 1
         
@@ -111,15 +117,14 @@ def func():
     result_city = []
     for i in range(len(days_best_city)):
         if days_best_city[i] != 0:
-            result_city.append(all_cities[i])
+            result_city.append((all_cities[i], days_best_city[i]))
 
-    result_city = MergeSort.merge(result_city)
     
-    result = []
-    for city in result_city:
-        id_city = binary_search(all_cities, city)
-        result.append((city, days_best_city[id_city]))
-    
-    return result
+    return MergeSort.merge(result_city)
 
-print(func())
+
+name, solutions, tests = task22()
+
+solutions[name] = func
+
+universal_test_system(solutions, tests)

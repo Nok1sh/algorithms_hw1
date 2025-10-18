@@ -1,3 +1,6 @@
+from test_alg import universal_test_system
+from test_for_all_tasks import task12
+
 
 def checkdifference(arr, pivot):
 
@@ -10,8 +13,7 @@ def checkdifference(arr, pivot):
     return arr[0].lower() < pivot[0].lower()
 
 
-def quicksort(left, right):
-    global arr
+def quicksort(left, right, arr):
 
     if left >= right:
         return
@@ -32,30 +34,20 @@ def quicksort(left, right):
             i += 1
             j -= 1      
     
-    quicksort(left, j)
-    quicksort(i, right)
+    quicksort(left, j, arr)
+    quicksort(i, right, arr)
 
 
-# test 1
+def func(arr):
+    quicksort(0, len(arr)-1, arr)
+    new_arr = []
+    for pers in arr:
+        new_arr.append(pers)
+    return new_arr
 
-arr = [
-    ("alla", 4, 100),
-    ("gena", 6, 1000),
-    ("gosha", 2, 90),
-    ("rita", 2, 90),
-    ("Timofey", 4, 80)
-]
-quicksort(0, len(arr)-1)
-print(arr)
 
-# test 2
+name, solutions, tests = task12()
 
-arr = [
-    ("alla", 0, 0),
-    ("gena", 0, 0),
-    ("gosha", 0, 0),
-    ("rita", 0, 0),
-    ("Timofey", 0, 0)
-]
-quicksort(0, len(arr)-1)
-print(arr)
+solutions[name] = func
+
+universal_test_system(solutions, tests)
